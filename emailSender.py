@@ -1,14 +1,15 @@
 from flask import Flask, request, jsonify
 from flask_mail import Mail, Message
+import os
 
 app = Flask(__name__)
 
 # Configure Flask-Mail
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'tinirecuiters@gmail.com'
-app.config['MAIL_PASSWORD'] = 'Promisebode@29'
+app.config['MAIL_SERVER'] = os.environ.get('MAIL_SERVER')
+app.config['MAIL_PORT'] = os.environ.get('MAIL_PORT')
+app.config['MAIL_USE_TLS'] = os.environ.get('MAIL_USE_TLS') == 'True'
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 
 mail = Mail(app)
 
@@ -35,7 +36,7 @@ def send_email():
     Good luck!
     """
 
-    msg = Message('New Recruiter Information', sender='tinirecuiters@gmail.com', recipients=['tinirecuiters@example.com'])
+    msg = Message('New Recruiter Information', sender=os.environ.get('MAIL_USERNAME'), recipients=['recipient_email@example.com'])
     msg.body = message
 
     try:
