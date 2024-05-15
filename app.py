@@ -23,20 +23,20 @@ def send_email():
     selected_niche = data.get('selectedNiche')
     selected_level = data.get('selectedLevel')
 
-    message = (
-        f"Alert! New Recruiter\n"
-        f"Info\n"
-        f"____________________\n"
-        f"Name: {full_name}\n"
-        f"Age: {age}\n"
-        f"Country: {country}\n"
-        f"Is Techie: {'yes' if is_techie == 'yes' else 'no'}\n"
-        f"{f'Current Niche: {selected_niche}\nCurrent Level: {selected_level}' if is_techie == 'yes' else f'Aspired Niche: {selected_niche}'}\n"
-        f"______________________________________\n"
-        f"Good luck!"
-    )
+    message = f"""
+Alert! New Recruiter
+Info
+____________________
+Name: {full_name}
+Age: {age}
+Country: {country}
+Is Techie: {'yes' if is_techie == 'yes' else 'no'}
+{'Current Niche: ' + selected_niche + '\\nCurrent Level: ' + selected_level if is_techie == 'yes' else 'Aspired Niche: ' + selected_niche}
+______________________________________
+Good luck!
+"""
 
-    msg = Message('New Recruiter Information', sender=os.environ.get('MAIL_USERNAME'), recipients=['recipient_email@example.com'])
+    msg = Message('New Recruiter Information', sender=os.environ.get('MAIL_USERNAME'), recipients=['tinirecuiters@example.com'])
     msg.body = message
 
     try:
