@@ -3,8 +3,6 @@ from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
 
-load_dotenv()  # Load environment variables from .env file
-
 app = Flask(__name__)
 
 # Configure Flask-Mail
