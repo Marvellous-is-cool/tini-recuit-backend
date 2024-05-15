@@ -31,7 +31,7 @@ Name: {full_name}
 Age: {age}
 Country: {country}
 Is Techie: {'yes' if is_techie == 'yes' else 'no'}
-{'Current Niche: ' + selected_niche + '\\nCurrent Level: ' + selected_level if is_techie == 'yes' else 'Aspired Niche: ' + selected_niche}
+{'Current Niche: ' + selected_niche + '\n Current Level: ' + selected_level if is_techie == 'yes' else 'Aspired Niche: ' + selected_niche}
 ______________________________________
 Good luck!
 """
