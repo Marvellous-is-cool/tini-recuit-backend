@@ -1,6 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_mail import Mail, Message
+from dotenv import load_dotenv
 import os
+
+load_dotenv()  # Load environment variables from .env file
 
 app = Flask(__name__)
 
@@ -23,15 +26,30 @@ def send_email():
     selected_niche = data.get('selectedNiche')
     selected_level = data.get('selectedLevel')
 
-    message = f"""
+    if is_techie == 'yes':
+        message = f"""
 Alert! New Recruiter
 Info
 ____________________
 Name: {full_name}
 Age: {age}
 Country: {country}
-Is Techie: {'yes' if is_techie == 'yes' else 'no'}
-{'Current Niche: ' + selected_niche + '\n Current Level: ' + selected_level if is_techie == 'yes' else 'User Aspired Niche: ' + selected_niche}
+Is Techie: yes
+Current Niche: {selected_niche}
+Current Level: {selected_level}
+______________________________________
+Good luck!
+"""
+    else:
+        message = f"""
+Alert! New Recruiter
+Info
+____________________
+Name: {full_name}
+Age: {age}
+Country: {country}
+Is Techie: no
+Aspired Niche: {selected_niche}
 ______________________________________
 Good luck!
 """
